@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Für Sie | Batas & Cosmética Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pastelPink: '#FCE7F3',
+            pastelBeige: '#FDF6F0',
+            pastelRose: '#F43F5E',
+            pastelPurple: '#EDE9FE',
+            brandDark: '#4A3E3D'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-pastelBeige text-brandDark font-sans antialiased">
+
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-pink-100">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-serif font-bold tracking-wider text-rose-400">Für Sie</h1>
+      <nav class="space-x-6 hidden md:block">
+        <a href="#promos" class="hover:text-rose-400 transition">Promociones</a>
+        <a href="#productos" class="hover:text-rose-400 transition">Productos</a>
+        <a href="#experiencia" class="hover:text-rose-400 transition">Experiencia</a>
+      </nav>
+      <button onclick="openChatWithProduct('Consulta General')" class="bg-rose-300 text-white px-5 py-2 rounded-full font-medium hover:bg-rose-400 transition shadow">
+        Asistente IA
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-16 text-center max-w-4xl mx-auto px-4">
+    <span class="text-xs uppercase tracking-widest text-rose-400 bg-pink-100 px-3 py-1 rounded-full">Colección Exclusiva</span>
+    <h2 class="text-4xl md:text-6xl font-serif font-light my-4">Elegancia & Cuidado para Ti</h2>
+    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Descubre nuestras batas de seda y cosmética natural seleccionada con la mayor dedicación.</p>
+  </section>
+
+  <!-- Carrusel de Promociones -->
+  <section id="promos" class="max-w-6xl mx-auto px-4 my-10">
+    <h3 class="text-2xl font-serif text-center mb-6">Promociones Especiales</h3>
+    <div class="swiper promoSwiper rounded-2xl overflow-hidden shadow-lg border border-pink-100 bg-white">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide p-8 bg-gradient-to-r from-pink-100 to-purple-100 flex flex-col md:flex-row items-center justify-between">
+          <div class="space-y-3 md:w-1/2">
+            <span class="text-sm font-semibold text-rose-500">Combo Relax</span>
+            <h4 class="text-3xl font-serif">Bata de Seda + Serum Facial</h4>
+            <p class="text-gray-600">Lévate el set completo con un 20% OFF y envío sin cargo.</p>
+            <button onclick="openChatWithProduct('Combo Relax (Bata + Serum)')" class="bg-rose-400 text-white px-6 py-2.5 rounded-full shadow hover:bg-rose-500 transition">Comprar Ahora</button>
+          </div>
+          <img src="https://images.unsplash.com/photo-1512290900673-200388835f8d?w=500&auto=format&fit=crop" class="w-full md:w-1/3 rounded-xl shadow-md mt-4 md:mt-0 object-cover h-64" alt="Promo">
+        </div>
+        <div class="swiper-slide p-8 bg-gradient-to-r from-purple-100 to-pink-50 flex flex-col md:flex-row items-center justify-between">
+          <div class="space-y-3 md:w-1/2">
+            <span class="text-sm font-semibold text-rose-500">Beauty Care</span>
+            <h4 class="text-3xl font-serif">Kit Cosmética Glow</h4>
+            <p class="text-gray-600">Crema hidratante + Aceite esencial de rosa mosqueta.</p>
+            <button onclick="openChatWithProduct('Kit Cosmética Glow')" class="bg-rose-400 text-white px-6 py-2.5 rounded-full shadow hover:bg-rose-500 transition">Comprar Ahora</button>
+          </div>
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop" class="w-full md:w-1/3 rounded-xl shadow-md mt-4 md:mt-0 object-cover h-64" alt="Promo">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section id="experiencia" class="max-w-4xl mx-auto px-4 my-16 text-center">
+    <h3 class="text-2xl font-serif mb-4">Experiencia Für Sie</h3>
+    <div class="aspect-video rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+      <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0" title="Für Sie Promo" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Catálogo de Productos -->
+  <section id="productos" class="max-w-6xl mx-auto px-4 my-16">
+    <h3 class="text-3xl font-serif text-center mb-10">Nuestros Productos</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Producto 1 -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-pink-100 hover:shadow-md transition">
+        <img src="https://images.unsplash.com/photo-1512290900673-200388835f8d?w=400&auto=format&fit=crop" class="w-full h-64 object-cover rounded-xl cursor-pointer" onclick="openChatWithProduct('Bata Rosa de Seda')" alt="Bata Seda">
+        <div class="mt-4">
+          <h4 class="font-serif text-xl">Bata Rosa de Seda</h4>
+          <p class="text-rose-400 font-semibold my-1">$25,000 ARS</p>
+          <button onclick="openChatWithProduct('Bata Rosa de Seda')" class="w-full mt-3 bg-pink-100 text-rose-600 py-2 rounded-xl hover:bg-pink-200 transition font-medium">Comprar con IA</button>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-pink-100 hover:shadow-md transition">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop" class="w-full h-64 object-cover rounded-xl cursor-pointer" onclick="openChatWithProduct('Serum Facial Revitalizante')" alt="Serum">
+        <div class="mt-4">
+          <h4 class="font-serif text-xl">Serum Facial Revitalizante</h4>
+          <p class="text-rose-400 font-semibold my-1">$12,500 ARS</p>
+          <button onclick="openChatWithProduct('Serum Facial Revitalizante')" class="w-full mt-3 bg-pink-100 text-rose-600 py-2 rounded-xl hover:bg-pink-200 transition font-medium">Comprar con IA</button>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-pink-100 hover:shadow-md transition">
+        <img src="https://images.unsplash.com/photo-1608248597261-8f27807be61e?w=400&auto=format&fit=crop" class="w-full h-64 object-cover rounded-xl cursor-pointer" onclick="openChatWithProduct('Crema Hidratante Nocturna')" alt="Crema">
+        <div class="mt-4">
+          <h4 class="font-serif text-xl">Crema Hidratante Nocturna</h4>
+          <p class="text-rose-400 font-semibold my-1">$15,000 ARS</p>
+          <button onclick="openChatWithProduct('Crema Hidratante Nocturna')" class="w-full mt-3 bg-pink-100 text-rose-600 py-2 rounded-xl hover:bg-pink-200 transition font-medium">Comprar con IA</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Widget de Chat Flotante -->
+  <div id="chatWidget" class="fixed bottom-6 right-6 z-50">
+    <button id="chatToggle" class="bg-rose-400 text-white p-4 rounded-full shadow-2xl hover:bg-rose-500 transition flex items-center gap-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+      <span class="hidden md:inline font-medium">Asistente Für Sie</span>
+    </button>
+
+    <div id="chatBox" class="hidden fixed bottom-20 right-6 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-pink-100 flex flex-col h-[500px]">
+      <div class="bg-pink-100 p-4 rounded-t-2xl flex justify-between items-center border-b border-pink-200">
+        <div>
+          <h4 class="font-serif font-bold text-gray-800">Für Sie Bot IA</h4>
+          <p class="text-xs text-gray-500">Atención 24/7 y confirmación de pedidos</p>
+        </div>
+        <button id="closeChat" class="text-gray-500 hover:text-black">✕</button>
+      </div>
+
+      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
+        <div class="bg-pink-50 p-3 rounded-xl max-w-[85%] text-gray-700">
+          ¡Hola! Bienvenido/a a **Für Sie**. ¿En qué puedo ayudarte hoy o qué producto deseas encargar?
+        </div>
+      </div>
+
+      <div class="p-3 border-t border-pink-100 flex flex-col gap-2 bg-gray-50 rounded-b-2xl">
+        <div id="filePreview" class="text-xs text-rose-500 hidden font-medium">📄 Comprobante adjuntado</div>
+        <div class="flex gap-2">
+          <input type="text" id="userInput" placeholder="Escribe tu mensaje..." class="flex-1 border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-rose-300">
+          <label class="cursor-pointer p-2 bg-gray-200 rounded-xl hover:bg-gray-300 text-gray-600" title="Adjuntar Comprobante">
+            📎
+            <input type="file" id="fileInput" accept="image/*" class="hidden">
+          </label>
+          <button id="sendBtn" class="bg-rose-400 text-white px-4 rounded-xl hover:bg-rose-500 font-semibold">></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // CAMBIA ESTA URL POR TU URL PÚBLICA DE NGROK O RENDER:
+    const BACKEND_URL = 'http://localhost:3000/api/chat';
+
+    const swiper = new Swiper('.promoSwiper', {
+      loop: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      autoplay: { delay: 4000 }
+    });
+
+    const chatToggle = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const closeChat = document.getElementById('closeChat');
+    const sendBtn = document.getElementById('sendBtn');
+    const userInput = document.getElementById('userInput');
+    const fileInput = document.getElementById('fileInput');
+    const filePreview = document.getElementById('filePreview');
+    const chatMessages = document.getElementById('chatMessages');
+
+    let selectedFile = null;
+
+    chatToggle.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+    closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        selectedFile = e.target.files[0];
+        filePreview.classList.remove('hidden');
+      }
+    });
+
+    function openChatWithProduct(productName) {
+      chatBox.classList.remove('hidden');
+      userInput.value = `Hola, quiero consultar o comprar: ${productName}`;
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
+
+    async function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text && !selectedFile) return;
+
+      appendMessage('user', text + (selectedFile ? ' [Adjuntó comprobante]' : ''));
+      
+      const formData = new FormData();
+      formData.append('message', text);
+      if (selectedFile) formData.append('receipt', selectedFile);
+
+      userInput.value = '';
+      fileInput.value = '';
+      selectedFile = null;
+      filePreview.classList.add('hidden');
+
+      appendMessage('bot', 'Pensando...');
+
+      try {
+        const response = await fetch(BACKEND_URL, {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+        
+        chatMessages.removeChild(chatMessages.lastChild);
+        appendMessage('bot', data.reply);
+      } catch (err) {
+        chatMessages.removeChild(chatMessages.lastChild);
+        appendMessage('bot', 'Error de conexión con la IA.');
+      }
+    }
+
+    function appendMessage(sender, text) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = sender === 'user' 
+        ? 'bg-rose-200 text-gray-800 p-3 rounded-xl max-w-[85%] ml-auto text-right'
+        : 'bg-pink-50 text-gray-700 p-3 rounded-xl max-w-[85%]';
+      msgDiv.innerText = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  </script>
+</body>
+</html>

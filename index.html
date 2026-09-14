@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Für Sie - Batas Exclusivas & Perfumería Refinada</title>
+    <title>Für Sie - Silk & Beauty</title>
     <style>
         :root {
-            --primary-color: #d8819a;
-            --primary-hover: #c46b85;
-            --bg-light: #fff8f9;
-            --text-dark: #2b2b2b;
+            --primary-pink: #e08dac;
+            --primary-hover: #c97594;
+            --rose-gold: #d4a373;
+            --bg-creme: #faf5f6;
+            --text-dark: #2c2527;
             --card-bg: #ffffff;
-            --chat-bg: #ffffff;
-            --user-msg-bg: #d8819a;
-            --bot-msg-bg: #f8ecee;
+            --bot-bg: #f5eaed;
         }
 
         * {
@@ -24,262 +23,252 @@
 
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-light);
+            background-color: var(--bg-creme);
             color: var(--text-dark);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* HEADER & HERO */
+        /* TEXTO CORRIENDO (MARQUEE) */
+        .marquee-container {
+            background: linear-gradient(90deg, #d8819a, #e08dac);
+            color: white;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 22s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* HEADER */
         header {
             background-color: #ffffff;
             text-align: center;
-            padding: 50px 20px 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            border-bottom: 1px solid #f2e1e5;
+            padding: 35px 20px 20px;
+            box-shadow: 0 4px 15px rgba(224, 141, 172, 0.08);
         }
 
         h1.brand-title {
             font-family: 'Georgia', serif;
-            font-size: 3.2rem;
-            letter-spacing: 3px;
+            font-size: 3rem;
+            letter-spacing: 4px;
             color: var(--text-dark);
-            margin-bottom: 5px;
         }
 
         p.subtitle {
             font-style: italic;
-            color: #888;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            color: #8a7c80;
+            font-size: 0.95rem;
+            margin-top: 4px;
         }
 
-        /* BANNER PROMOCIONAL */
-        .hero-banner {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(216, 129, 154, 0.15);
-        }
-
-        .hero-banner h2 {
-            font-family: 'Georgia', serif;
-            font-size: 2rem;
-            color: #4a2c35;
-            margin-bottom: 10px;
-        }
-
-        .hero-banner p {
-            color: #6a4450;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        /* CONTENEDOR SECCIONES */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0 20px;
+        }
+
         .section-title {
-            text-align: center;
             font-family: 'Georgia', serif;
-            font-size: 2.2rem;
-            margin: 50px 0 30px;
+            font-size: 1.8rem;
             color: var(--text-dark);
+        }
+
+        /* CARRUSEL DE PRODUCTOS DINÁMICO */
+        .carousel-wrapper {
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 2px;
-            background-color: var(--primary-color);
-            margin: 10px auto 0;
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 5px 25px;
+            scrollbar-width: none;
         }
 
-        /* GRILLA Y CARDS DE PRODUCTOS */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .carousel-track::-webkit-scrollbar {
+            display: none;
         }
 
         .product-card {
+            min-width: 280px;
+            max-width: 280px;
             background-color: var(--card-bg);
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #f0dbe0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            border: 1px solid #f2e3e6;
+            transition: transform 0.3s ease;
+            position: relative;
             display: flex;
             flex-direction: column;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(216, 129, 154, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(224, 141, 172, 0.9);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
         }
 
         .product-img {
             width: 100%;
-            height: 280px;
+            height: 260px;
             object-fit: cover;
-            background-color: #f7ede3;
         }
 
         .product-info {
-            padding: 20px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
 
         .product-title {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-dark);
+            margin-bottom: 6px;
         }
 
         .product-desc {
-            font-size: 0.92rem;
-            color: #666;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: #736568;
+            margin-bottom: 12px;
             flex: 1;
         }
 
         .product-price {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+            color: var(--primary-pink);
+            margin-bottom: 12px;
         }
 
         .btn-order {
-            background-color: var(--primary-color);
+            background-color: var(--primary-pink);
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 25px;
+            padding: 10px;
+            border-radius: 20px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: background 0.2s;
             width: 100%;
-            text-align: center;
         }
 
         .btn-order:hover {
             background-color: var(--primary-hover);
         }
 
-        /* SECCIÓN DE VIDEOS */
+        /* CONTROLES CARRUSEL */
+        .carousel-btn {
+            background: white;
+            border: 1px solid #e0d2d5;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
+
+        /* VIDEOS */
         .videos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .video-card {
             background: white;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #f0dbe0;
+            border: 1px solid #f2e3e6;
         }
 
         .video-card video {
             width: 100%;
-            height: auto;
             display: block;
         }
 
         .video-card p {
-            padding: 12px;
+            padding: 10px;
             text-align: center;
-            font-weight: 500;
+            font-size: 0.9rem;
             color: #555;
         }
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            background-color: #ffffff;
-            border-top: 1px solid #f2e1e5;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* CHAT WIDGET FLOTANTE */
+        /* WIDGET CHAT */
         #chat-widget-button {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: var(--primary-color);
+            background-color: var(--primary-pink);
             color: white;
             border: none;
             border-radius: 30px;
-            padding: 14px 24px;
-            font-size: 16px;
+            padding: 12px 22px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 18px rgba(216, 129, 154, 0.45);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            box-shadow: 0 6px 20px rgba(224, 141, 172, 0.4);
             z-index: 1000;
-        }
-
-        #chat-widget-button:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-3px);
         }
 
         #chat-window {
             position: fixed;
-            bottom: 90px;
+            bottom: 85px;
             right: 25px;
-            width: 360px;
-            height: 520px;
-            background-color: var(--chat-bg);
+            width: 350px;
+            height: 490px;
+            background: white;
             border-radius: 20px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: none;
             flex-direction: column;
             overflow: hidden;
             z-index: 1000;
-            border: 1px solid #f0dbe0;
+            border: 1px solid #f2e3e6;
         }
 
         .chat-header {
-            background-color: var(--primary-color);
+            background-color: var(--primary-pink);
             color: white;
-            padding: 16px;
+            padding: 14px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .chat-header h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
         }
 
         .chat-messages {
@@ -293,34 +282,32 @@
 
         .message {
             max-width: 82%;
-            padding: 10px 14px;
+            padding: 9px 13px;
             border-radius: 14px;
-            font-size: 0.92rem;
-            line-height: 1.4;
-            word-wrap: break-word;
+            font-size: 0.9rem;
+            line-height: 1.35;
         }
 
         .message.user {
             align-self: flex-end;
-            background-color: var(--user-msg-bg);
+            background-color: var(--primary-pink);
             color: white;
             border-bottom-right-radius: 2px;
         }
 
         .message.bot {
             align-self: flex-start;
-            background-color: var(--bot-msg-bg);
-            color: #333;
+            background-color: var(--bot-bg);
+            color: #2c2527;
             border-bottom-left-radius: 2px;
         }
 
         .chat-input-area {
-            padding: 12px;
-            border-top: 1px solid #f0dbe0;
-            background-color: #fff;
+            padding: 10px;
+            border-top: 1px solid #f2e3e6;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         .input-row {
@@ -331,50 +318,32 @@
 
         .chat-input-area input[type="text"] {
             flex: 1;
-            padding: 10px 14px;
-            border: 1px solid #e2cad0;
+            padding: 9px 14px;
+            border: 1px solid #e0d2d5;
             border-radius: 20px;
             outline: none;
-            font-size: 0.9rem;
-        }
-
-        .chat-input-area input[type="text"]:focus {
-            border-color: var(--primary-color);
-        }
-
-        .file-label {
-            cursor: pointer;
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            padding: 4px;
+            font-size: 0.88rem;
         }
 
         .send-btn {
-            background-color: var(--primary-color);
+            background-color: var(--primary-pink);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-
-        .send-btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        #file-preview {
-            font-size: 0.8rem;
-            color: #666;
-            padding-left: 5px;
         }
     </style>
 </head>
 <body>
+
+    <!-- TEXTO CORRIENDO -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            ✦ ENVÍOS A TODO EL PAÍS ✦ 10% OFF PAGANDO POR TRANSFERENCIA ✦ COLECCIÓN SEDA & BEAUTY ✦ FÜR SIE ✦ ENVÍOS A TODO EL PAÍS ✦ 10% OFF PAGANDO POR TRANSFERENCIA ✦ COLECCIÓN SEDA & BEAUTY ✦ FÜR SIE ✦
+        </div>
+    </div>
 
     <!-- HEADER -->
     <header>
@@ -384,203 +353,195 @@
 
     <div class="container">
         
-        <!-- BANNER DESTACADO -->
-        <div class="hero-banner">
-            <h2>Colección Elegancia & Bienestar</h2>
-            <p>Descubre la suavidad de nuestras prendas y el aroma único de nuestra línea facial.</p>
-            <button class="btn-order" style="max-width: 250px; margin: 0 auto;" onclick="openChatWithProduct('Hola, quiero conocer la nueva colección')">Ver Novedades</button>
+        <!-- ENCABEZADO Y CONTROLES DEL CARRUSEL -->
+        <div class="section-header">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div>
+                <button class="carousel-btn" onclick="scrollCarousel(-300)">❮</button>
+                <button class="carousel-btn" onclick="scrollCarousel(300)">❯</button>
+            </div>
         </div>
 
-        <!-- SECCIÓN DE PRODUCTOS -->
-        <h2 class="section-title">Nuestros Productos</h2>
-        
-        <div class="products-grid">
-            
-            <!-- Producto 1 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80" alt="Bata Rosa de Seda" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Bata Rosa de Seda</h3>
-                    <p class="product-desc">Bata confeccionada en fina seda rosada, suave al tacto y diseñada para una elegancia incomparable.</p>
-                    <div class="product-price">$25,000 ARS</div>
-                    <button class="btn-order" onclick="openChatWithProduct('Hola, quiero consultar o comprar: Bata Rosa de Seda')">Encargar / Consultar</button>
+        <!-- CARRUSEL DINÁMICO DE PRODUCTOS -->
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <span class="badge">MÁS VENDIDO</span>
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80" alt="Bata Rosa de Seda" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Bata Rosa de Seda</h3>
+                        <p class="product-desc">Seda pura con acabado satinado. Suavidad y elegancia para tu rutina.</p>
+                        <div class="product-price">$25,000 ARS</div>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir la Bata Rosa de Seda')">Encargar / Consultar</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Producto 2 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80" alt="Serum Facial Revitalizante" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Serum Facial Revitalizante</h3>
-                    <p class="product-desc">Serum rejuvenecedor enriquecido con aceites esenciales para una piel radiante y fresca.</p>
-                    <div class="product-price">$12,000 ARS</div>
-                    <button class="btn-order" onclick="openChatWithProduct('Hola, quiero consultar o comprar: Serum Facial Revitalizante')">Encargar / Consultar</button>
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <span class="badge">NUEVO</span>
+                    <img src="https://images.unsplash.com/photo-1608248597260-e4b2a3a52533?auto=format&fit=crop&w=600&q=80" alt="Serum Facial Revitalizante" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Serum Revitalizante</h3>
+                        <p class="product-desc">Fórmula hidratante intensiva para dar luz y lozanía a la piel.</p>
+                        <div class="product-price">$12,000 ARS</div>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir el Serum Revitalizante')">Encargar / Consultar</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Producto 3 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Combo Relax" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Combo Relax (Bata + Serum)</h3>
-                    <p class="product-desc">El set completo para tu rutina de descanso. Incluye la Bata de Seda y el Serum Facial con descuento especial.</p>
-                    <div class="product-price">$32,000 ARS</div>
-                    <button class="btn-order" onclick="openChatWithProduct('Hola, quiero consultar o comprar: Combo Relax (Bata + Serum)')">Encargar / Consultar</button>
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <span class="badge">PROMO</span>
+                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" alt="Combo Relax" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Combo Relax</h3>
+                        <p class="product-desc">Bata de Seda + Serum Facial con precio promocional exclusivo.</p>
+                        <div class="product-price">$32,000 ARS</div>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir el Combo Relax')">Encargar / Consultar</button>
+                    </div>
                 </div>
-            </div>
 
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <span class="badge">EXCLUSIVO</span>
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Perfume Für Sie Signature" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Perfume Signature</h3>
+                        <p class="product-desc">Fragancia refinada con notas florales y toques de vainilla dulce.</p>
+                        <div class="product-price">$18,000 ARS</div>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir el Perfume Signature')">Encargar / Consultar</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <!-- SECCIÓN DE VIDEOS -->
-        <h2 class="section-title">Experiencia Für Sie</h2>
+        <!-- SECCIÓN VIDEOS -->
+        <div class="section-header">
+            <h2 class="section-title">Experiencia Für Sie</h2>
+        </div>
         <div class="videos-grid">
             <div class="video-card">
-                <video controls poster="https://images.unsplash.com/photo-1512290900673-05f47055047f?auto=format&fit=crop&w=600&q=80">
+                <video controls poster="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80">
                     <source src="video1.mp4" type="video/mp4">
-                    Tu navegador no soporta videos HTML5.
                 </video>
-                <p>Confección & Textura de Seda</p>
+                <p>Detalles de Confección</p>
             </div>
             <div class="video-card">
-                <video controls poster="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80">
+                <video controls poster="https://images.unsplash.com/photo-1608248597260-e4b2a3a52533?auto=format&fit=crop&w=600&q=80">
                     <source src="video2.mp4" type="video/mp4">
-                    Tu navegador no soporta videos HTML5.
                 </video>
-                <p>Rutina Facial con Serum Revitalizante</p>
+                <p>Rutina Beauty & Cuidado</p>
             </div>
         </div>
 
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 Für Sie. Todos los derechos reservados.</p>
-        <p>Envíos a todo el país | Pagos por Transferencia & Mercado Pago</p>
-    </footer>
+    <!-- BOTÓN CHAT -->
+    <button id="chat-widget-button" onclick="toggleChat()">💬 Asistente Für Sie</button>
 
-    <!-- BOTÓN Y WIDGET DE CHAT FLOTANTE -->
-    <button id="chat-widget-button" onclick="toggleChat()">
-        <span>💬</span> Asistente Für Sie
-    </button>
-
+    <!-- CHAT FLOTANTE -->
     <div id="chat-window">
         <div class="chat-header">
-            <h3>Für Sie Bot IA</h3>
-            <button class="close-btn" onclick="toggleChat()">✕</button>
+            <span style="font-weight: 600;">Asistente Für Sie</span>
+            <button style="background:none; border:none; color:white; cursor:pointer;" onclick="toggleChat()">✕</button>
         </div>
 
         <div class="chat-messages" id="chat-messages">
             <div class="message bot">
-                ¡Hola! Bienvenida/o a Für Sie. ✨ ¿En qué puedo ayudarte hoy o qué producto deseas encargar?
+                ¡Hola! ✨ ¿En qué puedo ayudarte hoy?
             </div>
         </div>
 
         <div class="chat-input-area">
-            <div id="file-preview"></div>
+            <div id="file-preview" style="font-size:0.75rem; color:#777;"></div>
             <div class="input-row">
-                <label for="image-input" class="file-label" title="Adjuntar comprobante o foto">📎</label>
-                <input type="file" id="image-input" accept="image/*" style="display: none;" onchange="updateFilePreview()">
-                <input type="text" id="user-input" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)">
+                <label for="image-input" style="cursor:pointer; font-size:1.2rem;">📎</label>
+                <input type="file" id="image-input" accept="image/*" style="display:none;" onchange="updateFilePreview()">
+                <input type="text" id="user-input" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
                 <button class="send-btn" onclick="sendMessage()">➤</button>
             </div>
         </div>
     </div>
 
     <script>
-        // ⚠️ REEMPLAZA ESTA URL CON TU DOMINIO ACTIVO DE NGROK SI CAMBIA
+        // URL NGROK (Asegúrate de actualizar si reinicias ngrok)
         const BACKEND_URL = 'https://numerous-distort-emptier.ngrok-free.dev';
 
-        function toggleChat() {
-            const chatWindow = document.getElementById('chat-window');
-            chatWindow.style.display = (chatWindow.style.display === 'flex') ? 'none' : 'flex';
+        function scrollCarousel(distance) {
+            document.getElementById('carouselTrack').scrollBy({ left: distance, behavior: 'smooth' });
         }
 
-        function openChatWithProduct(productText) {
-            const chatWindow = document.getElementById('chat-window');
-            chatWindow.style.display = 'flex';
-            
-            const inputField = document.getElementById('user-input');
-            inputField.value = productText;
+        function toggleChat() {
+            const chat = document.getElementById('chat-window');
+            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function openChatWithProduct(text) {
+            document.getElementById('chat-window').style.display = 'flex';
+            document.getElementById('user-input').value = text;
             sendMessage();
         }
 
         function updateFilePreview() {
-            const fileInput = document.getElementById('image-input');
-            const preview = document.getElementById('file-preview');
-            if (fileInput.files.length > 0) {
-                preview.textContent = `📎 Imagen adjunta: ${fileInput.files[0].name}`;
-            } else {
-                preview.textContent = '';
-            }
+            const file = document.getElementById('image-input').files[0];
+            document.getElementById('file-preview').textContent = file ? `📎 Adjunto: ${file.name}` : '';
         }
 
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
         }
 
         async function sendMessage() {
-            const inputField = document.getElementById('user-input');
+            const input = document.getElementById('user-input');
             const fileInput = document.getElementById('image-input');
-            const messagesContainer = document.getElementById('chat-messages');
+            const messages = document.getElementById('chat-messages');
 
-            const messageText = inputField.value.trim();
+            const text = input.value.trim();
             const file = fileInput.files[0];
 
-            if (!messageText && !file) return;
+            if (!text && !file) return;
 
-            // Mensaje del usuario
-            const userMsgDiv = document.createElement('div');
-            userMsgDiv.className = 'message user';
-            userMsgDiv.textContent = messageText + (file ? ` [Imagen: ${file.name}]` : '');
-            messagesContainer.appendChild(userMsgDiv);
+            // Mensaje usuario
+            const uDiv = document.createElement('div');
+            uDiv.className = 'message user';
+            uDiv.textContent = text + (file ? ` [Comprobante]` : '');
+            messages.appendChild(uDiv);
 
-            // Limpiar inputs
-            inputField.value = '';
+            input.value = '';
             fileInput.value = '';
             document.getElementById('file-preview').textContent = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            messages.scrollTop = messages.scrollHeight;
 
-            // Indicador de carga
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'message bot';
-            loadingDiv.textContent = 'Escribiendo...';
-            messagesContainer.appendChild(loadingDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            // Loading
+            const lDiv = document.createElement('div');
+            lDiv.className = 'message bot';
+            lDiv.textContent = '...';
+            messages.appendChild(lDiv);
+            messages.scrollTop = messages.scrollHeight;
 
-            // Preparar FormData
             const formData = new FormData();
-            if (messageText) formData.append('message', messageText);
+            if (text) formData.append('message', text);
             if (file) formData.append('imagen', file);
 
             try {
-                const response = await fetch(`${BACKEND_URL}/webhook`, {
-                    method: 'POST',
-                    body: formData
-                });
+                const res = await fetch(`${BACKEND_URL}/webhook`, { method: 'POST', body: formData });
+                const data = await res.json();
+                messages.removeChild(lDiv);
 
-                const data = await response.json();
-                
-                // Remover indicador de carga
-                messagesContainer.removeChild(loadingDiv);
-
-                const botMsgDiv = document.createElement('div');
-                botMsgDiv.className = 'message bot';
-                botMsgDiv.textContent = data.reply || data.response || data.message || "Lo siento, no pude procesar la respuesta.";
-                messagesContainer.appendChild(botMsgDiv);
-
-            } catch (error) {
-                console.error("Error enviando mensaje:", error);
-                messagesContainer.removeChild(loadingDiv);
-
-                const errorMsgDiv = document.createElement('div');
-                errorMsgDiv.className = 'message bot';
-                errorMsgDiv.textContent = "Lo siento, ocurrió un error de conexión con el servidor.";
-                messagesContainer.appendChild(errorMsgDiv);
+                const bDiv = document.createElement('div');
+                bDiv.className = 'message bot';
+                bDiv.textContent = data.reply || data.response || "Listo.";
+                messages.appendChild(bDiv);
+            } catch (err) {
+                messages.removeChild(lDiv);
+                const eDiv = document.createElement('div');
+                eDiv.className = 'message bot';
+                eDiv.textContent = "Error de conexión temporal.";
+                messages.appendChild(eDiv);
             }
-
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            messages.scrollTop = messages.scrollHeight;
         }
     </script>
 </body>

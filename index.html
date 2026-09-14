@@ -1,242 +1,329 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Für Sie | Batas & Cosmética Premium</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            pastelPink: '#FCE7F3',
-            pastelBeige: '#FDF6F0',
-            pastelRose: '#F43F5E',
-            pastelPurple: '#EDE9FE',
-            brandDark: '#4A3E3D'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Für Sie - Alta Costura & Perfumería</title>
+    <style>
+        :root {
+            --primary-color: #d8819a;
+            --primary-hover: #c46b85;
+            --bg-light: #fff8f9;
+            --text-color: #333333;
+            --chat-bg: #ffffff;
+            --user-msg-bg: #f2a2b8;
+            --bot-msg-bg: #f8ecee;
         }
-      }
-    }
-  </script>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            margin: 0;
+            color: #2b2b2b;
+        }
+
+        p.subtitle {
+            font-style: italic;
+            color: #777;
+            margin-top: 8px;
+        }
+
+        /* Widget del Chat Floating */
+        #chat-widget-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(216, 129, 154, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        #chat-widget-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        #chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            width: 360px;
+            height: 520px;
+            background-color: var(--chat-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            border: 1px solid #f0dbe0;
+        }
+
+        .chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background-color: var(--user-msg-bg);
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background-color: var(--bot-msg-bg);
+            color: #333;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            padding: 12px;
+            border-top: 1px solid #f0dbe0;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .chat-input-area input[type="text"] {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #e2cad0;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .chat-input-area input[type="text"]:focus {
+            border-color: var(--primary-color);
+        }
+
+        .file-label {
+            cursor: pointer;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            padding: 4px;
+        }
+
+        .send-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .send-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #file-preview {
+            font-size: 0.8rem;
+            color: #666;
+            padding-left: 5px;
+        }
+    </style>
 </head>
-<body class="bg-pastelBeige text-brandDark font-sans antialiased">
+<body>
 
-  <!-- Header -->
-  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-pink-100">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-3xl font-serif font-bold tracking-wider text-rose-400">Für Sie</h1>
-      <nav class="space-x-6 hidden md:block">
-        <a href="#promos" class="hover:text-rose-400 transition">Promociones</a>
-        <a href="#productos" class="hover:text-rose-400 transition">Productos</a>
-        <a href="#experiencia" class="hover:text-rose-400 transition">Experiencia</a>
-      </nav>
-      <button onclick="openChatWithProduct('Consulta General')" class="bg-rose-300 text-white px-5 py-2 rounded-full font-medium hover:bg-rose-400 transition shadow">
-        Asistente IA
-      </button>
-    </div>
-  </header>
+    <header>
+        <h1>Für Sie</h1>
+        <p class="subtitle">Batas exclusivas de seda & Perfumería refinada</p>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="py-16 text-center max-w-4xl mx-auto px-4">
-    <span class="text-xs uppercase tracking-widest text-rose-400 bg-pink-100 px-3 py-1 rounded-full">Colección Exclusiva</span>
-    <h2 class="text-4xl md:text-6xl font-serif font-light my-4">Elegancia & Cuidado para Ti</h2>
-    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Descubre nuestras batas de seda y cosmética natural seleccionada con la mayor dedicación.</p>
-  </section>
-
-  <!-- Carrusel de Promociones -->
-  <section id="promos" class="max-w-6xl mx-auto px-4 my-10">
-    <h3 class="text-2xl font-serif text-center mb-6">Promociones Especiales</h3>
-    <div class="swiper promoSwiper rounded-2xl overflow-hidden shadow-lg border border-pink-100 bg-white">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide p-8 bg-gradient-to-r from-pink-100 to-purple-100 flex flex-col md:flex-row items-center justify-between">
-          <div class="space-y-3 md:w-1/2">
-            <span class="text-sm font-semibold text-rose-500">Combo Relax</span>
-            <h4 class="text-3xl font-serif">Bata de Seda + Serum Facial</h4>
-            <p class="text-gray-600">Lévate el set completo con un 20% OFF y envío sin cargo.</p>
-            <button onclick="openChatWithProduct('Combo Relax (Bata + Serum)')" class="bg-rose-400 text-white px-6 py-2.5 rounded-full shadow hover:bg-rose-500 transition">Comprar Ahora</button>
-          </div>
-          <img src="https://images.unsplash.com/photo-1512290900673-200388835f8d?w=500&auto=format&fit=crop" class="w-full md:w-1/3 rounded-xl shadow-md mt-4 md:mt-0 object-cover h-64" alt="Promo">
-        </div>
-        <div class="swiper-slide p-8 bg-gradient-to-r from-purple-100 to-pink-50 flex flex-col md:flex-row items-center justify-between">
-          <div class="space-y-3 md:w-1/2">
-            <span class="text-sm font-semibold text-rose-500">Beauty Care</span>
-            <h4 class="text-3xl font-serif">Kit Cosmética Glow</h4>
-            <p class="text-gray-600">Crema hidratante + Aceite esencial de rosa mosqueta.</p>
-            <button onclick="openChatWithProduct('Kit Cosmética Glow')" class="bg-rose-400 text-white px-6 py-2.5 rounded-full shadow hover:bg-rose-500 transition">Comprar Ahora</button>
-          </div>
-          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop" class="w-full md:w-1/3 rounded-xl shadow-md mt-4 md:mt-0 object-cover h-64" alt="Promo">
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-  </section>
-
-  <!-- Video Section -->
-  <section id="experiencia" class="max-w-4xl mx-auto px-4 my-16 text-center">
-    <h3 class="text-2xl font-serif mb-4">Experiencia Für Sie</h3>
-    <div class="aspect-video rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-      <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0" title="Für Sie Promo" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- Catálogo de Productos -->
-  <section id="productos" class="max-w-6xl mx-auto px-4 my-16">
-    <h3 class="text-3xl font-serif text-center mb-10">Nuestros Productos</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Producto 1 -->
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-pink-100 hover:shadow-md transition">
-        <img src="https://images.unsplash.com/photo-1512290900673-200388835f8d?w=400&auto=format&fit=crop" class="w-full h-64 object-cover rounded-xl cursor-pointer" onclick="openChatWithProduct('Bata Rosa de Seda')" alt="Bata Seda">
-        <div class="mt-4">
-          <h4 class="font-serif text-xl">Bata Rosa de Seda</h4>
-          <p class="text-rose-400 font-semibold my-1">$25,000 ARS</p>
-          <button onclick="openChatWithProduct('Bata Rosa de Seda')" class="w-full mt-3 bg-pink-100 text-rose-600 py-2 rounded-xl hover:bg-pink-200 transition font-medium">Comprar con IA</button>
-        </div>
-      </div>
-
-      <!-- Producto 2 -->
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-pink-100 hover:shadow-md transition">
-        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop" class="w-full h-64 object-cover rounded-xl cursor-pointer" onclick="openChatWithProduct('Serum Facial Revitalizante')" alt="Serum">
-        <div class="mt-4">
-          <h4 class="font-serif text-xl">Serum Facial Revitalizante</h4>
-          <p class="text-rose-400 font-semibold my-1">$12,500 ARS</p>
-          <button onclick="openChatWithProduct('Serum Facial Revitalizante')" class="w-full mt-3 bg-pink-100 text-rose-600 py-2 rounded-xl hover:bg-pink-200 transition font-medium">Comprar con IA</button>
-        </div>
-      </div>
-
-      <!-- Producto 3 -->
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-pink-100 hover:shadow-md transition">
-        <img src="https://images.unsplash.com/photo-1608248597261-8f27807be61e?w=400&auto=format&fit=crop" class="w-full h-64 object-cover rounded-xl cursor-pointer" onclick="openChatWithProduct('Crema Hidratante Nocturna')" alt="Crema">
-        <div class="mt-4">
-          <h4 class="font-serif text-xl">Crema Hidratante Nocturna</h4>
-          <p class="text-rose-400 font-semibold my-1">$15,000 ARS</p>
-          <button onclick="openChatWithProduct('Crema Hidratante Nocturna')" class="w-full mt-3 bg-pink-100 text-rose-600 py-2 rounded-xl hover:bg-pink-200 transition font-medium">Comprar con IA</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Widget de Chat Flotante -->
-  <div id="chatWidget" class="fixed bottom-6 right-6 z-50">
-    <button id="chatToggle" class="bg-rose-400 text-white p-4 rounded-full shadow-2xl hover:bg-rose-500 transition flex items-center gap-2">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-      <span class="hidden md:inline font-medium">Asistente Für Sie</span>
+    <!-- Botón Flotante para abrir Chat -->
+    <button id="chat-widget-button" onclick="toggleChat()">
+        <span>💬</span> Asistente Für Sie
     </button>
 
-    <div id="chatBox" class="hidden fixed bottom-20 right-6 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-pink-100 flex flex-col h-[500px]">
-      <div class="bg-pink-100 p-4 rounded-t-2xl flex justify-between items-center border-b border-pink-200">
-        <div>
-          <h4 class="font-serif font-bold text-gray-800">Für Sie Bot IA</h4>
-          <p class="text-xs text-gray-500">Atención 24/7 y confirmación de pedidos</p>
+    <!-- Ventana del Chat -->
+    <div id="chat-window">
+        <div class="chat-header">
+            <h3>Für Sie Bot IA</h3>
+            <button class="close-btn" onclick="toggleChat()">✕</button>
         </div>
-        <button id="closeChat" class="text-gray-500 hover:text-black">✕</button>
-      </div>
 
-      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
-        <div class="bg-pink-50 p-3 rounded-xl max-w-[85%] text-gray-700">
-          ¡Hola! Bienvenido/a a **Für Sie**. ¿En qué puedo ayudarte hoy o qué producto deseas encargar?
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot">
+                ¡Hola! Bienvenida/o a Für Sie. ✨ ¿En qué puedo ayudarte hoy o qué producto deseas consultar?
+            </div>
         </div>
-      </div>
 
-      <div class="p-3 border-t border-pink-100 flex flex-col gap-2 bg-gray-50 rounded-b-2xl">
-        <div id="filePreview" class="text-xs text-rose-500 hidden font-medium">📄 Comprobante adjuntado</div>
-        <div class="flex gap-2">
-          <input type="text" id="userInput" placeholder="Escribe tu mensaje..." class="flex-1 border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-rose-300">
-          <label class="cursor-pointer p-2 bg-gray-200 rounded-xl hover:bg-gray-300 text-gray-600" title="Adjuntar Comprobante">
-            📎
-            <input type="file" id="fileInput" accept="image/*" class="hidden">
-          </label>
-          <button id="sendBtn" class="bg-rose-400 text-white px-4 rounded-xl hover:bg-rose-500 font-semibold">></button>
+        <div class="chat-input-area">
+            <div id="file-preview"></div>
+            <div class="input-row">
+                <label for="image-input" class="file-label" title="Adjuntar comprobante">📎</label>
+                <input type="file" id="image-input" accept="image/*" style="display: none;" onchange="updateFilePreview()">
+                <input type="text" id="user-input" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    // CAMBIA ESTA URL POR TU URL PÚBLICA DE NGROK O RENDER:
-    const BACKEND_URL = 'http://localhost:3000/api/chat';
+    <script>
+        // ⚠️ REEMPLAZA ESTA URL CON TU DOMINIO ACTIVO DE NGROK
+        const BACKEND_URL = 'https://numerous-distort-emptier.ngrok-free.dev';
 
-    const swiper = new Swiper('.promoSwiper', {
-      loop: true,
-      pagination: { el: '.swiper-pagination', clickable: true },
-      autoplay: { delay: 4000 }
-    });
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            chatWindow.style.display = (chatWindow.style.display === 'flex') ? 'none' : 'flex';
+        }
 
-    const chatToggle = document.getElementById('chatToggle');
-    const chatBox = document.getElementById('chatBox');
-    const closeChat = document.getElementById('closeChat');
-    const sendBtn = document.getElementById('sendBtn');
-    const userInput = document.getElementById('userInput');
-    const fileInput = document.getElementById('fileInput');
-    const filePreview = document.getElementById('filePreview');
-    const chatMessages = document.getElementById('chatMessages');
+        function updateFilePreview() {
+            const fileInput = document.getElementById('image-input');
+            const preview = document.getElementById('file-preview');
+            if (fileInput.files.length > 0) {
+                preview.textContent = `📎 Imagen adjunta: ${fileInput.files[0].name}`;
+            } else {
+                preview.textContent = '';
+            }
+        }
 
-    let selectedFile = null;
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
 
-    chatToggle.addEventListener('click', () => chatBox.classList.toggle('hidden'));
-    closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
+        async function sendMessage() {
+            const inputField = document.getElementById('user-input');
+            const fileInput = document.getElementById('image-input');
+            const messagesContainer = document.getElementById('chat-messages');
 
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files.length > 0) {
-        selectedFile = e.target.files[0];
-        filePreview.classList.remove('hidden');
-      }
-    });
+            const messageText = inputField.value.trim();
+            const file = fileInput.files[0];
 
-    function openChatWithProduct(productName) {
-      chatBox.classList.remove('hidden');
-      userInput.value = `Hola, quiero consultar o comprar: ${productName}`;
-    }
+            if (!messageText && !file) return;
 
-    sendBtn.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
+            // Renderizar mensaje del usuario
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'message user';
+            userMsgDiv.textContent = messageText + (file ? ` [Imagen: ${file.name}]` : '');
+            messagesContainer.appendChild(userMsgDiv);
 
-    async function sendMessage() {
-      const text = userInput.value.trim();
-      if (!text && !selectedFile) return;
+            // Limpiar inputs
+            inputField.value = '';
+            fileInput.value = '';
+            document.getElementById('file-preview').textContent = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-      appendMessage('user', text + (selectedFile ? ' [Adjuntó comprobante]' : ''));
-      
-      const formData = new FormData();
-      formData.append('message', text);
-      if (selectedFile) formData.append('receipt', selectedFile);
+            // Indicador de carga
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message bot';
+            loadingDiv.textContent = 'Escribiendo...';
+            messagesContainer.appendChild(loadingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-      userInput.value = '';
-      fileInput.value = '';
-      selectedFile = null;
-      filePreview.classList.add('hidden');
+            // Preparar FormData para enviar archivo y texto
+            const formData = new FormData();
+            if (messageText) formData.append('message', messageText);
+            if (file) formData.append('imagen', file);
 
-      appendMessage('bot', 'Pensando...');
+            try {
+                const response = await fetch(`${BACKEND_URL}/webhook`, {
+                    method: 'POST',
+                    body: formData
+                });
 
-      try {
-        const response = await fetch(BACKEND_URL, {
-          method: 'POST',
-          body: formData
-        });
-        const data = await response.json();
-        
-        chatMessages.removeChild(chatMessages.lastChild);
-        appendMessage('bot', data.reply);
-      } catch (err) {
-        chatMessages.removeChild(chatMessages.lastChild);
-        appendMessage('bot', 'Error de conexión con la IA.');
-      }
-    }
+                const data = await response.json();
+                
+                // Remover indicador de carga
+                messagesContainer.removeChild(loadingDiv);
 
-    function appendMessage(sender, text) {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = sender === 'user' 
-        ? 'bg-rose-200 text-gray-800 p-3 rounded-xl max-w-[85%] ml-auto text-right'
-        : 'bg-pink-50 text-gray-700 p-3 rounded-xl max-w-[85%]';
-      msgDiv.innerText = text;
-      chatMessages.appendChild(msgDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-  </script>
+                const botMsgDiv = document.createElement('div');
+                botMsgDiv.className = 'message bot';
+                botMsgDiv.textContent = data.reply || data.response || data.message || "Lo siento, no pude procesar tu respuesta.";
+                messagesContainer.appendChild(botMsgDiv);
+
+            } catch (error) {
+                console.error("Error al enviar mensaje:", error);
+                messagesContainer.removeChild(loadingDiv);
+
+                const errorMsgDiv = document.createElement('div');
+                errorMsgDiv.className = 'message bot';
+                errorMsgDiv.textContent = "Lo siento, ocurrió un error de conexión con el servidor.";
+                messagesContainer.appendChild(errorMsgDiv);
+            }
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+    </script>
 </body>
 </html>

@@ -7,78 +7,112 @@
     <style>
         :root {
             --primary-pink: #e08dac;
-            --primary-hover: #c97594;
-            --bg-creme: #faf5f6;
+            --pastel-green: #a3b18a;
+            --pastel-green-light: #e8ebe4;
+            --creme-bg: #fefae0;
+            --creme-card: #faedcd;
             --text-dark: #2c2527;
-            --card-bg: #ffffff;
             --bot-bg: #f5eaed;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg-creme); color: var(--text-dark); }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--creme-bg); color: var(--text-dark); }
 
+        /* MARQUEE */
         .marquee-container {
-            background: linear-gradient(90deg, #d8819a, #e08dac);
+            background: linear-gradient(90deg, var(--pastel-green), var(--primary-pink));
             color: white; padding: 8px 0; overflow: hidden; white-space: nowrap;
             font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
         }
         .marquee-content { display: inline-block; animation: marquee 22s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 
+        /* HEADER */
         header {
-            background: #fff; text-align: center; padding: 25px 20px;
-            box-shadow: 0 4px 15px rgba(224, 141, 172, 0.08); display: flex;
+            background: #ffffff; padding: 25px 20px;
+            box-shadow: 0 4px 15px rgba(163, 177, 138, 0.12); display: flex;
             justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto;
+            border-bottom: 2px solid var(--pastel-green-light);
         }
-        h1.brand-title { font-family: 'Georgia', serif; font-size: 2.5rem; letter-spacing: 3px; }
+        h1.brand-title { font-family: 'Georgia', serif; font-size: 2.5rem; letter-spacing: 3px; color: var(--text-dark); }
 
         .cart-toggle-btn {
-            background: var(--primary-pink); color: white; border: none;
-            padding: 10px 18px; border-radius: 20px; font-weight: 600; cursor: pointer;
-            display: flex; align-items: center; gap: 8px;
+            background: var(--pastel-green); color: white; border: none;
+            padding: 10px 20px; border-radius: 20px; font-weight: 600; cursor: pointer;
+            display: flex; align-items: center; gap: 8px; font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(163, 177, 138, 0.3);
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        .section-title { font-family: 'Georgia', serif; font-size: 1.8rem; margin: 30px 0 15px; }
+        
+        .section-header {
+            display: flex; justify-content: space-between; align-items: center; margin: 35px 0 15px;
+        }
+        .section-title { font-family: 'Georgia', serif; font-size: 1.8rem; color: var(--text-dark); }
 
         /* CARRUSEL DE PRODUCTOS */
-        .carousel-track { display: flex; gap: 20px; overflow-x: auto; padding: 10px 5px 20px; scrollbar-width: none; }
+        .carousel-wrapper { position: relative; }
+        .carousel-track { display: flex; gap: 20px; overflow-x: auto; padding: 10px 5px 20px; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel-track::-webkit-scrollbar { display: none; }
 
         .product-card {
-            min-width: 260px; max-width: 260px; background: white; border-radius: 18px;
-            overflow: hidden; border: 1px solid #f2e3e6; display: flex; flex-direction: column;
+            min-width: 270px; max-width: 270px; background: #ffffff; border-radius: 20px;
+            overflow: hidden; border: 1px solid #e9ece6; display: flex; flex-direction: column;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04); position: relative; transition: transform 0.3s;
         }
-        .product-img { width: 100%; height: 240px; object-fit: cover; }
-        .product-info { padding: 15px; display: flex; flex-direction: column; flex: 1; }
-        .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
-        .product-price { font-size: 1.2rem; font-weight: bold; color: var(--primary-pink); margin-bottom: 10px; }
-        .btn-add-cart {
-            background: var(--primary-pink); color: white; border: none; padding: 9px;
-            border-radius: 18px; font-weight: 600; cursor: pointer; transition: 0.2s;
-        }
-        .btn-add-cart:hover { background: var(--primary-hover); }
+        .product-card:hover { transform: translateY(-5px); }
 
-        /* MODAL / DRAWER CARRITO */
+        .badge {
+            position: absolute; top: 12px; left: 12px;
+            background: var(--pastel-green); color: white; font-size: 0.75rem;
+            font-weight: bold; padding: 4px 10px; border-radius: 12px;
+        }
+
+        .product-img { width: 100%; height: 250px; object-fit: cover; }
+        .product-info { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+        .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+        .product-price { font-size: 1.25rem; font-weight: bold; color: var(--primary-pink); margin-bottom: 12px; }
+        
+        .btn-add-cart {
+            background: var(--pastel-green); color: white; border: none; padding: 10px;
+            border-radius: 20px; font-weight: 600; cursor: pointer; transition: 0.2s; width: 100%;
+        }
+        .btn-add-cart:hover { background: #8f9e77; }
+
+        .carousel-btn {
+            background: white; border: 1px solid var(--pastel-green); width: 38px; height: 38px;
+            border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: var(--pastel-green);
+        }
+
+        /* VIDEOS */
+        .videos-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px;
+        }
+        .video-card { background: white; border-radius: 18px; overflow: hidden; border: 1px solid #e9ece6; }
+        .video-card video { width: 100%; display: block; }
+        .video-card p { padding: 12px; text-align: center; font-size: 0.9rem; color: #555; font-weight: 500; }
+
+        /* DRAWER DEL CARRITO */
         #cart-modal {
             position: fixed; top: 0; right: -400px; width: 380px; height: 100%;
-            background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 1001;
+            background: #ffffff; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 1001;
             transition: right 0.3s ease; display: flex; flex-direction: column; padding: 20px;
         }
         #cart-modal.open { right: 0; }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--pastel-green-light); padding-bottom: 12px; }
         .cart-items { flex: 1; overflow-y: auto; margin: 15px 0; display: flex; flex-direction: column; gap: 10px; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; background: #faf5f6; padding: 10px; border-radius: 10px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: var(--creme-bg); padding: 12px; border-radius: 12px; }
         .cart-item-qty { display: flex; gap: 6px; align-items: center; }
         .cart-item-qty button { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #ccc; background: white; cursor: pointer; }
 
         .checkout-form { display: flex; flex-direction: column; gap: 8px; }
         .checkout-form input, .checkout-form select {
-            padding: 8px 12px; border: 1px solid #e0d2d5; border-radius: 8px; font-size: 0.85rem;
+            padding: 9px 12px; border: 1px solid #dcdfd8; border-radius: 10px; font-size: 0.88rem; outline: none;
         }
-        .btn-pay-action {
-            background: #25d366; color: white; border: none; padding: 12px; border-radius: 20px;
-            font-weight: bold; cursor: pointer; text-align: center; margin-top: 10px; text-decoration: none;
+        
+        .btn-mp-app {
+            background: #009ee3; color: white; border: none; padding: 12px; border-radius: 20px;
+            font-weight: bold; cursor: pointer; text-align: center; margin-top: 6px; text-decoration: none; display: block;
         }
 
         /* WIDGET CHAT */
@@ -112,61 +146,92 @@
     </div>
 
     <header>
-        <div>
-            <h1 class="brand-title">Für Sie</h1>
-        </div>
+        <h1 class="brand-title">Für Sie</h1>
         <button class="cart-toggle-btn" onclick="toggleCart()">
             🛒 Carrito (<span id="cart-count">0</span>)
         </button>
     </header>
 
     <div class="container">
-        <h2 class="section-title">Nuestros Productos</h2>
-        <div class="carousel-track">
-            
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Bata Rosa de Seda</h3>
-                    <div class="product-price">$25,000 ARS</div>
-                    <button class="btn-add-cart" onclick="addToCart('Bata Rosa de Seda', 25000)">Agregar al Carrito</button>
-                </div>
+        
+        <div class="section-header">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div>
+                <button class="carousel-btn" onclick="scrollCarousel(-280)">❮</button>
+                <button class="carousel-btn" onclick="scrollCarousel(280)">❯</button>
             </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1608248597260-e4b2a3a52533?auto=format&fit=crop&w=600&q=80" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Serum Revitalizante</h3>
-                    <div class="product-price">$12,000 ARS</div>
-                    <button class="btn-add-cart" onclick="addToCart('Serum Revitalizante', 12000)">Agregar al Carrito</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Combo Relax</h3>
-                    <div class="product-price">$32,000 ARS</div>
-                    <button class="btn-add-cart" onclick="addToCart('Combo Relax', 32000)">Agregar al Carrito</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Perfume Signature</h3>
-                    <div class="product-price">$18,000 ARS</div>
-                    <button class="btn-add-cart" onclick="addToCart('Perfume Signature', 18000)">Agregar al Carrito</button>
-                </div>
-            </div>
-
         </div>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                
+                <div class="product-card">
+                    <span class="badge">MÁS VENDIDO</span>
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Bata Rosa de Seda</h3>
+                        <div class="product-price">$25,000 ARS</div>
+                        <button class="btn-add-cart" onclick="addToCart('Bata Rosa de Seda', 25000)">Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="badge">NUEVO</span>
+                    <img src="https://images.unsplash.com/photo-1608248597260-e4b2a3a52533?auto=format&fit=crop&w=600&q=80" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Serum Revitalizante</h3>
+                        <div class="product-price">$12,000 ARS</div>
+                        <button class="btn-add-cart" onclick="addToCart('Serum Revitalizante', 12000)">Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="badge">PROMO</span>
+                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Combo Relax</h3>
+                        <div class="product-price">$32,000 ARS</div>
+                        <button class="btn-add-cart" onclick="addToCart('Combo Relax', 32000)">Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="badge">EXCLUSIVO</span>
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Perfume Signature</h3>
+                        <div class="product-price">$18,000 ARS</div>
+                        <button class="btn-add-cart" onclick="addToCart('Perfume Signature', 18000)">Agregar al Carrito</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Experiencia Für Sie</h2>
+        </div>
+        <div class="videos-grid">
+            <div class="video-card">
+                <video controls poster="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80">
+                    <source src="video1.mp4" type="video/mp4">
+                </video>
+                <p>Detalles de Confección</p>
+            </div>
+            <div class="video-card">
+                <video controls poster="https://images.unsplash.com/photo-1608248597260-e4b2a3a52533?auto=format&fit=crop&w=600&q=80">
+                    <source src="video2.mp4" type="video/mp4">
+                </video>
+                <p>Rutina Beauty & Cuidado</p>
+            </div>
+        </div>
+
     </div>
 
-    <!-- DRAWER DEL CARRITO -->
+    <!-- DRAWER CARRITO -->
     <div id="cart-modal">
         <div class="cart-header">
-            <h3>Tu Carrito de Compra</h3>
+            <h3>Tu Carrito</h3>
             <button style="background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="toggleCart()">✕</button>
         </div>
         
@@ -174,7 +239,7 @@
             <p style="text-align:center; color:#888; margin-top:20px;">El carrito está vacío.</p>
         </div>
 
-        <div style="border-top: 1px solid #eee; padding-top: 10px;">
+        <div style="border-top: 1px solid var(--pastel-green-light); padding-top: 10px;">
             <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:10px;">
                 <span>Total:</span>
                 <span id="cart-total">$0 ARS</span>
@@ -189,10 +254,10 @@
                     <option value="Retiro en Sucursal">Retiro en Sucursal</option>
                 </select>
                 
-                <button class="btn-add-cart" style="background:#d4a373;" onclick="copyAlias()">📋 Copiar Alias (fursie.estetica.mp)</button>
-                <a class="btn-pay-action" href="https://www.mercadopago.com.ar" target="_blank" onclick="sendOrderToChat()">
-                    📲 Pagar en App & Adjuntar Foto
-                </a>
+                <button class="btn-add-cart" style="background:var(--pastel-green);" onclick="copyAlias()">📋 Copiar Alias (fursie.estetica.mp)</button>
+                <button class="btn-mp-app" onclick="openMercadoPagoApp()">
+                    📲 Abrir App Mercado Pago
+                </button>
             </div>
         </div>
     </div>
@@ -208,7 +273,7 @@
 
         <div class="chat-messages" id="chat-messages">
             <div class="message bot">
-                ¡Hola! ✨ Completa tu carrito o adjunta aquí tu comprobante de pago con tus datos.
+                ¡Hola! ✨ Adjunta aquí el comprobante de tu transferencia con tus datos de envío.
             </div>
         </div>
 
@@ -226,6 +291,10 @@
     <script>
         const BACKEND_URL = 'https://numerous-distort-emptier.ngrok-free.dev';
         let cart = [];
+
+        function scrollCarousel(dist) {
+            document.getElementById('carouselTrack').scrollBy({ left: dist, behavior: 'smooth' });
+        }
 
         function toggleCart() {
             document.getElementById('cart-modal').classList.toggle('open');
@@ -294,6 +363,19 @@
         function copyAlias() {
             navigator.clipboard.writeText('fursie.estetica.mp');
             alert('¡Alias copiado al portapapeles!: fursie.estetica.mp');
+        }
+
+        // Abre la App nativa de Mercado Pago mediante Deep Linking
+        function openMercadoPagoApp() {
+            sendOrderToChat();
+            
+            // Intenta abrir la app de Mercado Pago instalada
+            window.location.href = "mercadopago://";
+
+            // Si no abre la app en 1.5s, redirige a la web como alternativa
+            setTimeout(() => {
+                window.open("https://www.mercadopago.com.ar", "_blank");
+            }, 1500);
         }
 
         function sendOrderToChat() {

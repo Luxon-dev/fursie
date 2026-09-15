@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Für Sie - Silk & Beauty</title>
+    <title>Für Sie - Batas de Seda & Perfumería Refinada</title>
     <style>
         :root {
             --primary-pink: #e08dac;
@@ -16,18 +16,18 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--creme-bg); color: var(--text-dark); }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--creme-bg); color: var(--text-dark); line-height: 1.6; }
 
-        /* MARQUEE */
+        /* MARQUEE DINÁMICO */
         .marquee-container {
             background: linear-gradient(90deg, var(--pastel-green), var(--primary-pink));
             color: white; padding: 8px 0; overflow: hidden; white-space: nowrap;
             font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
         }
-        .marquee-content { display: inline-block; animation: marquee 22s linear infinite; }
+        .marquee-content { display: inline-block; animation: marquee 24s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 
-        /* HEADER */
+        /* HEADER & NAVEGACIÓN */
         header {
             background: #ffffff; padding: 25px 20px;
             box-shadow: 0 4px 15px rgba(163, 177, 138, 0.12); display: flex;
@@ -35,23 +35,34 @@
             border-bottom: 2px solid var(--pastel-green-light);
         }
         h1.brand-title { font-family: 'Georgia', serif; font-size: 2.5rem; letter-spacing: 3px; color: var(--text-dark); }
+        p.subtitle { font-style: italic; color: #8a7c80; font-size: 0.9rem; }
 
         .cart-toggle-btn {
             background: var(--pastel-green); color: white; border: none;
             padding: 10px 20px; border-radius: 20px; font-weight: 600; cursor: pointer;
             display: flex; align-items: center; gap: 8px; font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(163, 177, 138, 0.3);
+            box-shadow: 0 4px 12px rgba(163, 177, 138, 0.3); transition: background 0.2s;
         }
+        .cart-toggle-btn:hover { background: #8f9e77; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        
+
         .section-header {
-            display: flex; justify-content: space-between; align-items: center; margin: 35px 0 15px;
+            display: flex; justify-content: space-between; align-items: center; margin: 45px 0 20px;
         }
-        .section-title { font-family: 'Georgia', serif; font-size: 1.8rem; color: var(--text-dark); }
+        .section-title { font-family: 'Georgia', serif; font-size: 2rem; color: var(--text-dark); position: relative; }
+
+        /* SECCIÓN QUIÉNES SOMOS */
+        .about-section {
+            background: #ffffff; border-radius: 24px; padding: 40px 30px; margin: 30px 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #e9ece6;
+        }
+        .about-text h3 { font-family: 'Georgia', serif; font-size: 1.8rem; margin-bottom: 15px; color: var(--text-dark); }
+        .about-text p { color: #555; font-size: 1rem; margin-bottom: 15px; }
+        .about-img { width: 100%; height: 320px; object-fit: cover; border-radius: 18px; }
 
         /* CARRUSEL DE PRODUCTOS */
-        .carousel-wrapper { position: relative; }
         .carousel-track { display: flex; gap: 20px; overflow-x: auto; padding: 10px 5px 20px; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel-track::-webkit-scrollbar { display: none; }
 
@@ -84,13 +95,44 @@
             border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: var(--pastel-green);
         }
 
-        /* VIDEOS */
-        .videos-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px;
+        /* GALERÍA DE INSPIRACIÓN */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 20px;
         }
+        .gallery-item { height: 200px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        /* VIDEOS */
+        .videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px; }
         .video-card { background: white; border-radius: 18px; overflow: hidden; border: 1px solid #e9ece6; }
         .video-card video { width: 100%; display: block; }
         .video-card p { padding: 12px; text-align: center; font-size: 0.9rem; color: #555; font-weight: 500; }
+
+        /* TESTIMONIOS Y RESEÑAS */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .review-card {
+            background: #ffffff; padding: 25px; border-radius: 20px; border: 1px solid #e9ece6;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03); display: flex; flex-direction: column; gap: 10px;
+        }
+        .stars { color: #f4c430; font-size: 1.1rem; }
+        .review-text { font-style: italic; color: #555; font-size: 0.92rem; }
+        .review-author { font-weight: bold; color: var(--text-dark); font-size: 0.88rem; }
+
+        /* BLOQUE CONTACTO WHATSAPP (NO FLOTANTE) */
+        .contact-box {
+            background: linear-gradient(135deg, #ffffff, var(--creme-card));
+            border-radius: 24px; padding: 40px 20px; margin: 50px 0; text-align: center;
+            border: 1px solid var(--pastel-green-light); box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+        }
+        .contact-box h3 { font-family: 'Georgia', serif; font-size: 2rem; margin-bottom: 10px; color: var(--text-dark); }
+        .contact-box p { color: #666; max-width: 600px; margin: 0 auto 25px; font-size: 1rem; }
+        .btn-whatsapp-box {
+            display: inline-flex; align-items: center; gap: 10px; background-color: #25d366; color: white;
+            padding: 14px 28px; border-radius: 30px; font-weight: bold; font-size: 1rem;
+            text-decoration: none; box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3); transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn-whatsapp-box:hover { background-color: #20ba5a; transform: translateY(-3px); }
 
         /* DRAWER DEL CARRITO */
         #cart-modal {
@@ -109,13 +151,12 @@
         .checkout-form input, .checkout-form select {
             padding: 9px 12px; border: 1px solid #dcdfd8; border-radius: 10px; font-size: 0.88rem; outline: none;
         }
-        
         .btn-mp-app {
             background: #009ee3; color: white; border: none; padding: 12px; border-radius: 20px;
             font-weight: bold; cursor: pointer; text-align: center; margin-top: 6px; text-decoration: none; display: block;
         }
 
-        /* WIDGET CHAT */
+        /* WIDGET CHAT FLOTANTE */
         #chat-widget-button {
             position: fixed; bottom: 25px; right: 25px; background: var(--primary-pink);
             color: white; border: none; border-radius: 30px; padding: 12px 22px;
@@ -135,18 +176,36 @@
         .input-row { display: flex; gap: 8px; align-items: center; }
         .chat-input-area input[type="text"] { flex: 1; padding: 8px 12px; border: 1px solid #e0d2d5; border-radius: 20px; outline: none; }
         .send-btn { background: var(--primary-pink); color: white; border: none; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; }
+
+        /* FOOTER COMPLETO */
+        footer {
+            background: #ffffff; border-top: 1px solid var(--pastel-green-light); padding: 50px 20px 20px;
+            margin-top: 60px; text-align: center; color: #777; font-size: 0.9rem;
+        }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 40px; }
+        .footer-col h4 { font-family: 'Georgia', serif; font-size: 1.2rem; color: var(--text-dark); margin-bottom: 12px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: #666; text-decoration: none; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: var(--primary-pink); }
+        .footer-bottom { border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #999; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
+    <!-- MARQUEE -->
     <div class="marquee-container">
         <div class="marquee-content">
-            ✦ ENVÍOS A TODO EL PAÍS ✦ 10% OFF PAGANDO POR TRANSFERENCIA ✦ FÜR SIE SILK & BEAUTY ✦
+            ✦ ENVÍOS A TODO EL PAÍS ✦ 10% OFF PAGANDO POR TRANSFERENCIA ✦ FÜR SIE SILK & BEAUTY ✦ ENVIOS A TODO EL PAÍS ✦ 10% OFF PAGANDO POR TRANSFERENCIA ✦
         </div>
     </div>
 
+    <!-- HEADER -->
     <header>
-        <h1 class="brand-title">Für Sie</h1>
+        <div>
+            <h1 class="brand-title">Für Sie</h1>
+            <p class="subtitle">Batas Exclusivas de Seda & Perfumería Refinada</p>
+        </div>
         <button class="cart-toggle-btn" onclick="toggleCart()">
             🛒 Carrito (<span id="cart-count">0</span>)
         </button>
@@ -154,8 +213,19 @@
 
     <div class="container">
         
+        <!-- SECCIÓN QUIÉNES SOMOS -->
+        <section class="about-section">
+            <div class="about-text">
+                <h3>Elegancia Hecha a Tu Medida</h3>
+                <p>En <strong>Für Sie</strong> diseñamos piezas exclusivas que combinan la delicadeza de la seda fina con la más alta sofisticación en perfumería y cosmética facial.</p>
+                <p>Nuestra misión es transformar tu descanso cotidiano en un ritual refinado de confort y bienestar personal.</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Experiencia Für Sie" class="about-img">
+        </section>
+
+        <!-- SECCIÓN DE PRODUCTOS -->
         <div class="section-header">
-            <h2 class="section-title">Nuestros Productos</h2>
+            <h2 class="section-title">Colección Exclusiva</h2>
             <div>
                 <button class="carousel-btn" onclick="scrollCarousel(-280)">❮</button>
                 <button class="carousel-btn" onclick="scrollCarousel(280)">❯</button>
@@ -208,6 +278,18 @@
             </div>
         </div>
 
+        <!-- GALERÍA INSPIRACIONAL -->
+        <div class="section-header">
+            <h2 class="section-title">Detalles & Inspiración</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80" alt="Textura"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Cosmética"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80" alt="Seda y Bienestar"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512290900673-05f47055047f?auto=format&fit=crop&w=500&q=80" alt="Fragancias"></div>
+        </div>
+
+        <!-- VIDEOS -->
         <div class="section-header">
             <h2 class="section-title">Experiencia Für Sie</h2>
         </div>
@@ -226,7 +308,68 @@
             </div>
         </div>
 
+        <!-- TESTIMONIOS -->
+        <div class="section-header">
+            <h2 class="section-title">Opiniones de Nuestras Clientas</h2>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"La bata rosa de seda es una belleza absoluta. La textura al tacto es increíble y llegó rapidísimo por envío a domicilio."</p>
+                <span class="review-author">— Valentina M. (Buenos Aires)</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Compré el Serum Revitalizante por recomendación y mi piel se nota completamente hidratada. Excelente atención del asistente virtual."</p>
+                <span class="review-author">— Sofía G. (Córdoba)</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"El Combo Relax fue el regalo perfecto. La calidad del empaque y de las prendas superó mis expectativas."</p>
+                <span class="review-author">— Lucía R. (Santa Fe)</span>
+            </div>
+        </div>
+
+        <!-- BLOQUE WHATSAPP DIRECTO (NO FLOTANTE) -->
+        <div class="contact-box">
+            <h3>¿Tienes consultas antes de realizar tu compra?</h3>
+            <p>Escríbenos directamente a nuestra línea oficial de atención personalizada por WhatsApp.</p>
+            <!-- REEMPLAZAR EL NÚMERO (549...) CON EL TUYO -->
+            <a href="https://wa.me/5491112345678?text=Hola,%20quisiera%20hacer%20una%20consulta%20sobre%20F%C3%BCr%20Sie" target="_blank" class="btn-whatsapp-box">
+                💬 Contactanos por WhatsApp
+            </a>
+        </div>
+
     </div>
+
+    <!-- FOOTER COMPLETO -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Für Sie</h4>
+                <p style="font-size:0.85rem; color:#666;">Batas exclusivas confeccionadas en seda fina y línea facial de perfumería botánica.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#carouselTrack">Productos</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleCart()">Carrito</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleChat()">Asistente IA</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legales</h4>
+                <ul>
+                    <li><a href="javascript:void(0)">Política de Privacidad</a></li>
+                    <li><a href="javascript:void(0)">Términos & Condiciones</a></li>
+                    <li><a href="javascript:void(0)">Envíos y Devoluciones</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Für Sie. Todos los derechos reservados. Pagos protegidos vía Transferencia & Mercado Pago.</p>
+        </div>
+    </footer>
 
     <!-- DRAWER CARRITO -->
     <div id="cart-modal">
@@ -365,14 +508,9 @@
             alert('¡Alias copiado al portapapeles!: fursie.estetica.mp');
         }
 
-        // Abre la App nativa de Mercado Pago mediante Deep Linking
         function openMercadoPagoApp() {
             sendOrderToChat();
-            
-            // Intenta abrir la app de Mercado Pago instalada
             window.location.href = "mercadopago://";
-
-            // Si no abre la app en 1.5s, redirige a la web como alternativa
             setTimeout(() => {
                 window.open("https://www.mercadopago.com.ar", "_blank");
             }, 1500);

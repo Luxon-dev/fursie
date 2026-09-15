@@ -92,7 +92,7 @@
             color: var(--text-dark);
         }
 
-        /* CARRUSEL DE PRODUCTOS DINÁMICO */
+        /* CARRUSEL DE PRODUCTOS */
         .carousel-wrapper {
             position: relative;
         }
@@ -190,7 +190,6 @@
             background-color: var(--primary-hover);
         }
 
-        /* CONTROLES CARRUSEL */
         .carousel-btn {
             background: white;
             border: 1px solid #e0d2d5;
@@ -338,7 +337,7 @@
 </head>
 <body>
 
-    <!-- TEXTO CORRIENDO -->
+    <!-- MARQUEE -->
     <div class="marquee-container">
         <div class="marquee-content">
             ✦ ENVÍOS A TODO EL PAÍS ✦ 10% OFF PAGANDO POR TRANSFERENCIA ✦ COLECCIÓN SEDA & BEAUTY ✦ FÜR SIE ✦ ENVÍOS A TODO EL PAÍS ✦ 10% OFF PAGANDO POR TRANSFERENCIA ✦ COLECCIÓN SEDA & BEAUTY ✦ FÜR SIE ✦
@@ -353,7 +352,7 @@
 
     <div class="container">
         
-        <!-- ENCABEZADO Y CONTROLES DEL CARRUSEL -->
+        <!-- SECCIÓN DE PRODUCTOS -->
         <div class="section-header">
             <h2 class="section-title">Nuestros Productos</h2>
             <div>
@@ -362,7 +361,6 @@
             </div>
         </div>
 
-        <!-- CARRUSEL DINÁMICO DE PRODUCTOS -->
         <div class="carousel-wrapper">
             <div class="carousel-track" id="carouselTrack">
                 
@@ -372,9 +370,9 @@
                     <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80" alt="Bata Rosa de Seda" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Bata Rosa de Seda</h3>
-                        <p class="product-desc">Seda pura con acabado satinado. Suavidad y elegancia para tu rutina.</p>
+                        <p class="product-desc">Seda pura satinada con tacto ultra suave.</p>
                         <div class="product-price">$25,000 ARS</div>
-                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir la Bata Rosa de Seda')">Encargar / Consultar</button>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero comprar la Bata Rosa de Seda')">Encargar / Consultar</button>
                     </div>
                 </div>
 
@@ -384,9 +382,9 @@
                     <img src="https://images.unsplash.com/photo-1608248597260-e4b2a3a52533?auto=format&fit=crop&w=600&q=80" alt="Serum Facial Revitalizante" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Serum Revitalizante</h3>
-                        <p class="product-desc">Fórmula hidratante intensiva para dar luz y lozanía a la piel.</p>
+                        <p class="product-desc">Fórmula de hidratación intensiva facial.</p>
                         <div class="product-price">$12,000 ARS</div>
-                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir el Serum Revitalizante')">Encargar / Consultar</button>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero comprar el Serum Revitalizante')">Encargar / Consultar</button>
                     </div>
                 </div>
 
@@ -396,21 +394,21 @@
                     <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" alt="Combo Relax" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Combo Relax</h3>
-                        <p class="product-desc">Bata de Seda + Serum Facial con precio promocional exclusivo.</p>
+                        <p class="product-desc">Bata de Seda + Serum Facial con descuento.</p>
                         <div class="product-price">$32,000 ARS</div>
-                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir el Combo Relax')">Encargar / Consultar</button>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero comprar el Combo Relax')">Encargar / Consultar</button>
                     </div>
                 </div>
 
                 <!-- Producto 4 -->
                 <div class="product-card">
                     <span class="badge">EXCLUSIVO</span>
-                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Perfume Für Sie Signature" class="product-img">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Perfume Signature" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Perfume Signature</h3>
-                        <p class="product-desc">Fragancia refinada con notas florales y toques de vainilla dulce.</p>
+                        <p class="product-desc">Notas florales y suaves de vainilla refinada.</p>
                         <div class="product-price">$18,000 ARS</div>
-                        <button class="btn-order" onclick="openChatWithProduct('Quiero pedir el Perfume Signature')">Encargar / Consultar</button>
+                        <button class="btn-order" onclick="openChatWithProduct('Quiero comprar el Perfume Signature')">Encargar / Consultar</button>
                     </div>
                 </div>
 
@@ -438,10 +436,9 @@
 
     </div>
 
-    <!-- BOTÓN CHAT -->
+    <!-- BOTÓN Y WIDGET DE CHAT -->
     <button id="chat-widget-button" onclick="toggleChat()">💬 Asistente Für Sie</button>
 
-    <!-- CHAT FLOTANTE -->
     <div id="chat-window">
         <div class="chat-header">
             <span style="font-weight: 600;">Asistente Für Sie</span>
@@ -457,7 +454,7 @@
         <div class="chat-input-area">
             <div id="file-preview" style="font-size:0.75rem; color:#777;"></div>
             <div class="input-row">
-                <label for="image-input" style="cursor:pointer; font-size:1.2rem;">📎</label>
+                <label for="image-input" style="cursor:pointer; font-size:1.2rem;" title="Adjuntar comprobante">📎</label>
                 <input type="file" id="image-input" accept="image/*" style="display:none;" onchange="updateFilePreview()">
                 <input type="text" id="user-input" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
                 <button class="send-btn" onclick="sendMessage()">➤</button>
@@ -466,8 +463,21 @@
     </div>
 
     <script>
-        // URL NGROK (Asegúrate de actualizar si reinicias ngrok)
+        // ⚠️ REEMPLAZAR CON TU URL ACTIVA DE NGROK
         const BACKEND_URL = 'https://numerous-distort-emptier.ngrok-free.dev';
+
+        // Persistencia del Chat en localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedChat = localStorage.getItem('fursie_chat_history');
+            if (savedChat) {
+                document.getElementById('chat-messages').innerHTML = savedChat;
+            }
+        });
+
+        function saveChatHistory() {
+            const messages = document.getElementById('chat-messages').innerHTML;
+            localStorage.setItem('fursie_chat_history', messages);
+        }
 
         function scrollCarousel(distance) {
             document.getElementById('carouselTrack').scrollBy({ left: distance, behavior: 'smooth' });
@@ -486,7 +496,7 @@
 
         function updateFilePreview() {
             const file = document.getElementById('image-input').files[0];
-            document.getElementById('file-preview').textContent = file ? `📎 Adjunto: ${file.name}` : '';
+            document.getElementById('file-preview').textContent = file ? `📎 Comprobante: ${file.name}` : '';
         }
 
         function handleKeyPress(e) {
@@ -503,18 +513,19 @@
 
             if (!text && !file) return;
 
-            // Mensaje usuario
+            // Renderizar mensaje del usuario
             const uDiv = document.createElement('div');
             uDiv.className = 'message user';
-            uDiv.textContent = text + (file ? ` [Comprobante]` : '');
+            uDiv.textContent = text + (file ? ` [Comprobante: ${file.name}]` : '');
             messages.appendChild(uDiv);
 
             input.value = '';
             fileInput.value = '';
             document.getElementById('file-preview').textContent = '';
             messages.scrollTop = messages.scrollHeight;
+            saveChatHistory();
 
-            // Loading
+            // Indicador de carga
             const lDiv = document.createElement('div');
             lDiv.className = 'message bot';
             lDiv.textContent = '...';
@@ -538,10 +549,12 @@
                 messages.removeChild(lDiv);
                 const eDiv = document.createElement('div');
                 eDiv.className = 'message bot';
-                eDiv.textContent = "Error de conexión temporal.";
+                eDiv.textContent = "Ocurrió un inconveniente de conexión temporal.";
                 messages.appendChild(eDiv);
             }
+
             messages.scrollTop = messages.scrollHeight;
+            saveChatHistory();
         }
     </script>
 </body>
